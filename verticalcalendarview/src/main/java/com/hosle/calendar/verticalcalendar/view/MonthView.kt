@@ -167,8 +167,6 @@ class MonthView @JvmOverloads constructor(
             this.onDayClick(this@MonthView, date)
         }
 
-        // This is a no-op if accessibility is turned off.
-//        mTouchHelper.sendEventForVirtualView(day, AccessibilityEvent.TYPE_VIEW_CLICKED)
         return true
     }
 
@@ -185,13 +183,8 @@ class MonthView @JvmOverloads constructor(
             return -1
         }
 
-        // Adjust for RTL after applying padding.
         val paddedXRtl: Int
-//        if (isLayoutRtl(this)) {
-//            paddedXRtl = mPaddedWidth - paddedX
-//        } else {
         paddedXRtl = paddedX
-//        }
 
         val row = (paddedY - headerHeight) / cellHeight
         val col = paddedXRtl * DAYS_IN_WEEK / paddedWidth

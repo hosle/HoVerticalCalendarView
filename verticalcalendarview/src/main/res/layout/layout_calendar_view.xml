@@ -7,14 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
-        android:background="@color/color_bg_18212D" />
+        android:background="@color/color_bg" />
 
     <TextView
         android:id="@+id/tv_month_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="@color/color_bg_18212D"
+        android:background="@color/color_bg"
         android:gravity="right"
         android:paddingRight="10dp"
         android:text="5月"
@@ -25,7 +25,7 @@
         android:id="@+id/header_day_of_week"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_bg_18212D"
+        android:background="@color/color_bg"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
 

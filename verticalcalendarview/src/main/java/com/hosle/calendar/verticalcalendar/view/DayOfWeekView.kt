@@ -5,6 +5,7 @@ import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import com.hosle.calendar.verticalcalendar.R
 import com.hosle.calendar.verticalcalendar.util.dp2px
 import java.util.*
 
@@ -20,7 +21,6 @@ class DayOfWeekView @JvmOverloads constructor(
     private val DAYS_IN_WEEK = 7
 
     private val paintDayOfWeek = TextPaint()
-    private val paintBg = Paint()
 
     private var cellWidth = 0
     private var cellHeight = context.dp2px(20f) //text size
@@ -32,7 +32,7 @@ class DayOfWeekView @JvmOverloads constructor(
         paintDayOfWeek.isAntiAlias = true
         paintDayOfWeek.textSize = context.dp2px(14f).toFloat()
         paintDayOfWeek.textAlign = Paint.Align.CENTER
-        paintDayOfWeek.color = Color.parseColor("#66ffffff")
+        paintDayOfWeek.color = resources.getColor(R.color.color_66_white)
         paintDayOfWeek.style = Paint.Style.FILL
     }
 
@@ -70,18 +70,13 @@ class DayOfWeekView @JvmOverloads constructor(
         val rowHeight = cellHeight
         val colWidth = cellWidth
 
-        // Text is vertically centered within the day of week height.
         val halfLineHeight = (p.ascent() + p.descent()) / 2f
         val rowCenter = rowHeight / 2 + paddingTop
 
         for (col in 0 until DAYS_IN_WEEK) {
             val colCenter = colWidth * col + colWidth / 2
             val colCenterRtl: Int
-//            if (isLayoutRtl()) {
-//                colCenterRtl = mPaddedWidth - colCenter
-//            } else {
-                colCenterRtl = colCenter
-//            }
+            colCenterRtl = colCenter
 
             val label = mDayOfWeekLabels[col]
             canvas.drawText(label, colCenterRtl.toFloat(), rowCenter - halfLineHeight, p)
@@ -89,8 +84,6 @@ class DayOfWeekView @JvmOverloads constructor(
     }
 
     private fun updateDayOfWeekLabels() {
-        // Use tiny (e.g. single-character) weekday names from ICU. The indices
-        // for this list correspond to Calendar days, e.g. SUNDAY is index 1.
         val tinyWeekdayNames = arrayOf("日","一","二","三","四","五","六")
         for (i in 0 until DAYS_IN_WEEK) {
             mDayOfWeekLabels[i] = tinyWeekdayNames[(weekStart + i - 1) % DAYS_IN_WEEK]
