@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:background="@color/color_bg_18212D" />
+
+    <TextView
+        android:id="@+id/tv_month_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/color_bg_18212D"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:text="5月"
+        android:textColor="@color/color_blue_4657"
+        android:textSize="20dp" />
+
+    <com.hosle.calendar.verticalcalendar.view.DayOfWeekView
+        android:id="@+id/header_day_of_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_bg_18212D"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="39.5dp"
+        android:background="#19ffffff" />
+</merge>
