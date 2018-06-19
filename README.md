@@ -66,17 +66,35 @@ calendar_view.setCalendarParams(createMonth(4)/** set the month arange **/,
 ## Key Point
 
 ### 2.1. 绘制月份View
+* **整体框架**
+
 实现垂直的连续滚动，可以使用RecyclerView。每个ItemView为一个月份的View。
 
-月份的View若使用如LinearLayout来布局，最小单元为天，那么一个月的ItemView至少将会包含28个子View。这样的方案需要重复多次View的“measure-layout-draw”的流程，效率低下。
+* **以月份为子View**
 
-参考```android.widget.SimpleMonthView```的设计思想，自定义view，
+月份的View若使用如LinearLayout来布局，最小单元为天，那么一个月的ItemView至少将会包含28个子View。这样的方案需要重复多次View的“measure-layout-draw”的流程，效率较低。
 
-### 2.2. 月份标签顶部冻结
+参考```android.widget.SimpleMonthView```的设计思想，自定义view。
 
-手势事件
+* **提供任务标识数据读取接口**
 
-坐标系与方向
+从日历的Map中获取任务数，绘制标识到对应的日期底部
+
+### 2.2. 月份标签顶部冻结及动效
+
+* **手势事件** 
+
+（1） 假设冻结月份栏的layout位置左、上、右、下分别为：*lleft*, *ltop*, *lright*, *lbottom* ,初始位置则为 *lleft0*, *ltop0*, *lright0*, *lbottom0*, 月份栏的高度为h,  滚动回调onScrollListener返回的位移量分别为*dx*, *dy*。
+
+（2） 利用LinearLayoutManager的findFirstVisibleItemPosition()方法，判断RecyclerView内，上／下一个月份ItemView的切换
+
+* 向下滑动时，冻结栏从 (*lleft0*, *ltop0-h*, *lright0*, *lbottom0-h*) 开始向下移动
+* 向上滑动时，冻结栏从(*lleft0*, *ltop0*, *lright0*, *lbottom*)开始向上移动
+
+（3） 以第二个可见月份子View的顶部，作为分界线*line*。到达冻结月份栏高度h的时候，触发冻结栏位置的动效变化。设定最小值以保证月份栏动效不滑出边界。
+	* line的位置top小于h时，冻结栏的位置为(*lleft0*, *min(ltop-dy,ltop0)*, *lright0*, *min(lbottom-dy, lbottom0)*)。
+	* line的位置top大于等于h时，冻结栏的位置为默认位置(*lleft0*, *ltop0*, *lright0*, *lbottom0*)。
+
 
 ## License
 
