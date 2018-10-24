@@ -95,6 +95,12 @@ calendar_view.setCalendarParams(createMonth(4)/** set the month arange **/,
 	* line的位置top小于h时，冻结栏的位置为(*lleft0*, *min(ltop-dy,ltop0)*, *lright0*, *min(lbottom-dy, lbottom0)*)。
 	* line的位置top大于等于h时，冻结栏的位置为默认位置(*lleft0*, *ltop0*, *lright0*, *lbottom0*)。
 
+## Extension
+
+[HoPagerCalendarView](https://github.com/hosle/HoPagerCalendarView)
+
+ A horizontal calendar view which is based ViewPager
+
 
 ## License
 
